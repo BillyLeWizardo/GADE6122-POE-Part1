@@ -14,6 +14,8 @@ namespace GADE6122_POE_Part1
         private Tile[,] TileMap { get; set; }
         private Hero Hero { get; set; }
         private Enemy[] Enemies { get; set; }
+        private Enemy Enemy { get; set; }
+
         private EmptyTile EmptyTile { get; set; }
         private Swamp_Creature swampCreature { get; set; }
         private int mapWidth, mapHeight;

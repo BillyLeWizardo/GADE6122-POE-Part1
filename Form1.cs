@@ -22,17 +22,7 @@ namespace GADE6122_POE_Part1
 
         private void frmARPG_Load(object sender, EventArgs e)
         {
-            for (int x = 0; x < 15; x++)
-            {
-                for (int y = 0; y < 15; y++)
-                {
-                    TextBox txtBox = new TextBox();
-                    txtBox.Size = new Size(30, 30);
-                    txtBox.Name = "txt" + x.ToString() + "_" + y.ToString();
-                    txtBox.Location = new Point(x * 30, y * 30);
-                    pnlDisplay.Controls.Add(txtBox);
-                }
-            }
+            refreshDisplay();
         }
 
         public bool MovePlayer(Character.characterMovement direction)
@@ -55,6 +45,22 @@ namespace GADE6122_POE_Part1
             }
             return true;
         }
+
+        private void refreshDisplay()
+        {
+            for (int x = 0; x < 15; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    TextBox txtBox = new TextBox();
+                    txtBox.Size = new Size(30, 30);
+                    txtBox.Name = "txt" + x.ToString() + "_" + y.ToString();
+                    txtBox.Location = new Point(x * 30, y * 30);
+                    pnlDisplay.Controls.Add(txtBox);
+                }
+            }
+        }
+
         private void btnLeft_Click(object sender, EventArgs e)
         {
             MovePlayer(Character.characterMovement.LEFT);
