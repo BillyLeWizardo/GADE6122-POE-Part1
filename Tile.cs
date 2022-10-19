@@ -8,21 +8,24 @@ namespace GADE6122_POE_Part1
 {
     abstract internal class Tile
     {
-        public int tileX { get; set; }
-        public int tileY { get; set; }
+        protected int tileX { get; set; }
+        protected int tileY { get; set; }
 
         public enum TileType
         {
-            HERO,
-            ENEMY,
-            GOLD,
-            WEAPON
+            HERO = 'H',
+            ENEMY = 'E',
+            GOLD = 'G',
+            WEAPON = 'W',
+            EMPTYTILE = '.',
+            OBSTACLE = 'X',
+            SWAMPCREATURE = 'C' 
         }
 
         public Tile(int x, int y)
         {
             tileX = x;
-            tileX = y;
+            tileY = y;
         }
     }
 }

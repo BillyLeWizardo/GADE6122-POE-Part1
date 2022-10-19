@@ -10,10 +10,10 @@ namespace GADE6122_POE_Part1
     abstract internal class Character : Tile
     {
         //VARIABLES
-        public int characterHP { get; set; }
-        public int charcterMaxHP{ get; set; }
-        public int characterDamage{ get; set; }
-        public Tile[] characterVision{ get; set; }
+        protected int characterHP { get; set; }
+        protected int charcterMaxHP{ get; set; }
+        protected int characterDamage{ get; set; }
+        protected Tile[] characterVision{ get; set; } = new Tile[5];
         public enum characterMovement
         {
             NONE,
