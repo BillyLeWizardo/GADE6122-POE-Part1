@@ -12,9 +12,12 @@ namespace GADE6122_POE_Part1
 {
     public partial class frmARPG : Form
     {
+        private Map gameMap { get; set; }
         public frmARPG()
         {
             InitializeComponent();
+
+            gameMap = new Map(10, 10, 10, 10, 5);
         }
 
         private void frmARPG_Load(object sender, EventArgs e)
@@ -30,6 +33,31 @@ namespace GADE6122_POE_Part1
                     pnlDisplay.Controls.Add(txtBox);
                 }
             }
+        }
+
+        public bool MovePlayer(Character.characterMovement direction)
+        {
+            switch (direction)
+            {
+                case Character.characterMovement.NONE:
+                    break;
+                case Character.characterMovement.UP:
+                    break;
+                case Character.characterMovement.DOWN:
+                    break;
+                case Character.characterMovement.LEFT:
+
+                    break;
+                case Character.characterMovement.RIGHT:
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            MovePlayer(Character.characterMovement.LEFT);
         }
     }
 }

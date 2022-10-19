@@ -153,6 +153,7 @@
             this.btnLeft.TabIndex = 0;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // frmARPG
             // 

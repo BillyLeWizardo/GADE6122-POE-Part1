@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GADE6122_POE_Part1
 {
-    abstract internal class Tile
+    abstract public class Tile
     {
-        protected int tileX { get; set; }
-        protected int tileY { get; set; }
+        public int tileX { get; set; }
+        public int tileY { get; set; }
 
         public enum TileType
         {

@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace GADE6122_POE_Part1
 {
-    abstract internal class Character : Tile
+    abstract public class Character : Tile
     {
         //VARIABLES
         protected int characterHP { get; set; }
