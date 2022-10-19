@@ -34,12 +34,11 @@ namespace GADE6122_POE_Part1
             {
                 for(int x = 0; x < mapWidth; x++)
                 {
-                    /*if (x == 0)
+                    if (x == 0)
                     {
                         TileMap[y, x] = Obstacle;
                     }
-                    else{ TileMap[y, x] = EmptyTile; }*/
-                    TileMap[y, x] = Hero;
+                    else{ TileMap[y, x] = EmptyTile; }
                 }
             }
 
