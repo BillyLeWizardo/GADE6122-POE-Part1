@@ -18,8 +18,9 @@ namespace GADE6122_POE_Part1
 
         private EmptyTile EmptyTile { get; set; }
         private Swamp_Creature swampCreature { get; set; }
-        private int mapWidth, mapHeight;
-        private Random rng;
+        private int mapWidth { get; set; }
+        private int mapHeight { get; set; }
+        private Random rng = new Random();
 
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies)
         {
