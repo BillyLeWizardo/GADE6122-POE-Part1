@@ -10,10 +10,10 @@ namespace GADE6122_POE_Part1
     abstract internal class Character : Tile
     {
         //VARIABLES
-        public int characterHP { get; }
-        public int charcterMaxHP{ get; }
-        public int characterDamage{ get; }
-        public Tile[] characterVision{ get; }
+        public int characterHP { get; set; }
+        public int charcterMaxHP{ get; set; }
+        public int characterDamage{ get; set; }
+        public Tile[] characterVision{ get; set; }
         public enum characterMovement
         {
             NONE,
@@ -31,7 +31,87 @@ namespace GADE6122_POE_Part1
 
         public virtual void Attack(Character target)
         {
-
+            target.characterHP -= characterDamage;
         }
+
+        public bool IsDead()
+        {
+            if (characterHP < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public virtual bool CheckRange(Character target)
+        {
+            if (DistanceTo(target) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Used by CheckRange.
+        /// Determines the absolute distance between a character and its target.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        private int DistanceTo(Character target)
+        {
+            int absoluteDistance;
+            int xDistance;
+            int yDistance;
+
+            xDistance = tileX - target.tileX;
+            if (xDistance < 0)
+            {
+                xDistance *= -1;
+            }
+
+            yDistance = tileY - target.tileY;
+            if (yDistance < 0)
+            {
+                yDistance *= -1;
+            }
+
+            absoluteDistance = xDistance + yDistance;
+
+            return absoluteDistance;
+        }
+
+        public void Move(characterMovement move)
+        {
+            switch (move)
+            {
+                case characterMovement.NONE:
+                    break;
+                case characterMovement.UP:
+                    tileY -= 1;
+                    break;
+                case characterMovement.DOWN:
+                    tileY += 1;
+                    break;
+                case characterMovement.LEFT:
+                    tileX -= 1;
+                    break;
+                case characterMovement.RIGHT:
+                    tileX += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public abstract characterMovement ReturnMove(characterMovement move = 0);
+
+        public abstract override string ToString();
     }
 }
