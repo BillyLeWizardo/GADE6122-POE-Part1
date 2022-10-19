@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace GADE6122_POE_Part1
 {
-    internal class Map
+    public class Map
     { 
 
         //VARIABLES
-        private Tile[,] TileMap { get; set; }
+        public Tile[,] TileMap { get; set; }
         private Hero Hero { get; set; }
         private Enemy[] Enemies { get; set; }
         private Enemy Enemy { get; set; }
 
         private EmptyTile EmptyTile { get; set; }
+        private Obstacle Obstacle { get; set; }
         private Swamp_Creature swampCreature { get; set; }
-        private int mapWidth { get; set; }
-        private int mapHeight { get; set; }
+        public int mapWidth { get; set; }
+        public int mapHeight { get; set; }
         private Random rng = new Random();
 
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies)
@@ -28,6 +29,18 @@ namespace GADE6122_POE_Part1
             mapWidth= rng.Next(minMapWidth, maxMapWidth);
 
             TileMap = new Tile[mapHeight, mapWidth];
+
+            for(int y = 0; y < mapHeight; y++)
+            {
+                for(int x = 0; x < mapWidth; x++)
+                {
+                    if (x == 0)
+                    {
+                        TileMap[y, x] = Obstacle;
+                    }
+                    else{ TileMap[y, x] = EmptyTile; }
+                }
+            }
 
             Enemies = new Enemy[numOfEnemies];
 
