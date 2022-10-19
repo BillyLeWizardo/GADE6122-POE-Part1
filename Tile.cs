@@ -22,7 +22,7 @@ namespace GADE6122_POE_Part1
             SWAMPCREATURE = 'C' 
         }
 
-        public Tile(int x, int y)
+        public Tile(int x, int y, char tileType)
         {
             tileX = x;
             tileY = y;

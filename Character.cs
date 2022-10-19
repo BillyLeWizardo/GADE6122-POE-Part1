@@ -24,7 +24,7 @@ namespace GADE6122_POE_Part1
         }
 
         //METHODS
-        public Character(int characterX, int characterY, char symbol) : base(characterX, characterY)
+        public Character(int characterX, int characterY, char symbol) : base(characterX, characterY, 'O')
         {
 
         }
