@@ -31,10 +31,5 @@ namespace GADE6122_POE_Part1
                 }
             }
         }
-        
-        private void Billy()
-        {
-
-        }
     }
 }
