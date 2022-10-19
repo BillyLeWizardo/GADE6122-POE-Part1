@@ -22,10 +22,10 @@ namespace GADE6122_POE_Part1
                 case characterMovement.NONE:
                     break;
                 case characterMovement.UP:
-                    if (characterVision[0] = (Tile))
-                    {
+                    //if (characterVision[0] = 'X')
+                    //{
 
-                    }
+                    //}
                     break;
                 case characterMovement.DOWN:
                     break;
@@ -37,6 +37,15 @@ namespace GADE6122_POE_Part1
                     break;
             }
             throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return $"Player Stats:" +
+                $"HP: {characterHP}/{charcterMaxHP}" +
+                $"Damage: {characterDamage}" +
+                $"[{tileX},{tileY}]";
+            //throw new NotImplementedException();
         }
     }
 }
