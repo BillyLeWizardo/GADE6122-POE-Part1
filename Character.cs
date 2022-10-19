@@ -13,7 +13,7 @@ namespace GADE6122_POE_Part1
         protected int characterHP { get; set; }
         protected int charcterMaxHP{ get; set; }
         protected int characterDamage{ get; set; }
-        protected Tile[] characterVision{ get; set; } = new Tile[5];
+        public Tile[] characterVision{ get; set; } = new Tile[5];
         public enum characterMovement
         {
             NONE,
