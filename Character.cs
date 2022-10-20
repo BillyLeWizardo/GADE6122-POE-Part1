@@ -26,7 +26,6 @@ namespace GADE6122_POE_Part1
         //METHODS
         public Character(int characterX, int characterY) : base(characterX,characterY)
         {
-
         }
 
         public virtual void Attack(Character target)

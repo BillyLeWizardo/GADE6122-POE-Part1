@@ -8,110 +8,106 @@ using System.Threading.Tasks;
 namespace GADE6122_POE_Part1
 {
     public class Map
-    { 
+    {
 
         //VARIABLES
-        public Tile[,] TileMap { get; set; }
-        //public char[,] tileChar { get; set; }
-        private Hero Hero { get; set; }
-        private Enemy[] Enemies { get; set; }
-        private Enemy Enemy { get; set; }
-        private EmptyTile EmptyTile { get; set; }
-        private Obstacle Obstacle { get; set; }
-        private Swamp_Creature swampCreature { get; set; }
-        public int mapWidth { get; set; }
-        public int mapHeight { get; set; }
-        private Random rng = new Random();
+        private Hero hero;
+        public Hero Hero { get { return hero; } set { hero = value; } }
+        
+        
+        private Enemy[] enemies;
+        public Enemy[] Enemies { get { return enemies; } set { enemies = value; } }
+
+
+        private Random rnjesus = new Random();
+        public int mapWidth;
+        public int mapHeight;
+
+        public int totalEnemies { get; set; }
+        private int enemyCounter;
+        public static Tile[,] TileMap { get; set; }
 
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies)
         {
-            mapHeight = rng.Next(minMapHeight, maxMapHeight);
-            mapWidth= rng.Next(minMapWidth, maxMapWidth);
+            mapHeight = rnjesus.Next(minMapHeight, maxMapHeight);
+            mapWidth= rnjesus.Next(minMapWidth, maxMapWidth);
 
             TileMap = new Tile[mapHeight, mapWidth];
-
-            for(int y = 0; y < mapHeight; y++)
+            
+            for (int x = 0; x < TileMap.GetLength(0); x++)
             {
-                for(int x = 0; x < mapWidth; x++)
+                for (int y = 0; y < TileMap.GetLength(1); y++)
                 {
-                    if ((x == 0) || (x == mapWidth-1))
+                    if (x == 0 || x == mapWidth - 1)
                     {
-                        TileMap[x,y] = new Obstacle(x,y);
+                        TileMap[x, y] = new Obstacle(x, y);
+                    }
+                    else if (y == 0 || y == mapHeight - 1)
+                    {
+                        TileMap[x, y] = new Obstacle(x, y);
                     }
                     else
-                    { 
-                        TileMap[y, x] = new EmptyTile(x,y); 
+                    {
+                        TileMap[x, y] = new EmptyTile(x, y);
                     }
                 }
             }
 
-            Enemies = new Enemy[numOfEnemies];
+            totalEnemies = numOfEnemies;
+            Enemies = new Enemy[totalEnemies];
 
-            Create(Tile.TileType.HERO);
-
-            foreach (var enemy in Enemies)
+            for (enemyCounter = 0; enemyCounter < totalEnemies; enemyCounter++)
             {
-                Create(Tile.TileType.SWAMPCREATURE);
+                Create(Tile.TileType.SWAMP_CREATURE);
             }
 
-            //UpdateVision();
+            Create(Tile.TileType.HERO);
+            
+            UpdateVision();
+        }
+
+        public Tile Create(Tile.TileType tileType)
+        {
+            int randomX;
+            int randomY;
+
+            do
+            {
+                randomX = rnjesus.Next(mapWidth - 1);
+                randomY = rnjesus.Next(mapHeight - 1);
+            }
+            while (TileMap[randomY, randomX].tileType != Tile.TileType.EMPTYTILE);
+            if (tileType == Tile.TileType.SWAMP_CREATURE)
+            {
+                Enemies[enemyCounter] = new Swamp_Creature(randomX, randomY, enemyCounter);
+                TileMap[randomY, randomX] = Enemies[enemyCounter];
+            }
+            else
+            if (tileType == Tile.TileType.HERO)
+            {
+                Hero = new Hero(randomY, randomX, 20);
+                TileMap[randomY, randomX] = Hero;
+            }
+            return TileMap[randomY, randomX];
+
         }
 
         public void UpdateVision()
         {
-            Hero.characterVision[0] = TileMap[Hero.tileY - 1, Hero.tileX]; // North
-            Hero.characterVision[1] = TileMap[Hero.tileY + 1, Hero.tileX]; // South
-            Hero.characterVision[2] = TileMap[Hero.tileY, Hero.tileX -1]; // West
-            Hero.characterVision[3] = TileMap[Hero.tileY, Hero.tileX + 1]; // East
-            Hero.characterVision[4] = TileMap[Hero.tileY, Hero.tileX]; // Current
+            Hero.characterVision[0] = TileMap[Hero.TileY, Hero.TileX];
+            Hero.characterVision[1] = TileMap[Hero.TileY - 1, Hero.TileX];
+            Hero.characterVision[2] = TileMap[Hero.TileY + 1, Hero.TileX];
+            Hero.characterVision[3] = TileMap[Hero.TileY, Hero.TileX - 1];
+            Hero.characterVision[4] = TileMap[Hero.TileY, Hero.TileX + 1];
 
-            Enemy.characterVision[0] = TileMap[Enemy.tileY - 1, Enemy.tileX]; // North
-            Enemy.characterVision[1] = TileMap[Enemy.tileY + 1, Enemy.tileX]; // South
-            Enemy.characterVision[2] = TileMap[Enemy.tileY, Enemy.tileX - 1]; // West
-            Enemy.characterVision[3] = TileMap[Enemy.tileY, Enemy.tileX + 1]; // East
-            Enemy.characterVision[4] = TileMap[Enemy.tileY, Enemy.tileX]; // Current
-        }
-
-        private Tile Create(Tile.TileType tileType)
-        {
-            int randomX = rng.Next(mapWidth - 1);
-            int randomY = rng.Next(mapHeight - 1);
-
-            switch (tileType)
+            for (int c = 0; c < totalEnemies; c++)
             {
-                case Tile.TileType.HERO:
-                    while (TileMap[randomY,randomX] != EmptyTile)
-                    {
-                        randomX = rng.Next(mapWidth - 1);
-                        randomY = rng.Next(mapHeight - 1);
-                    }
-                    return TileMap[randomY, randomX] = Hero;
-                //case Tile.TileType.ENEMY:
-                //    while (TileMap[randomY, randomX] != EmptyTile)
-                //    {
-                //        randomX = rng.Next(mapWidth - 1);
-                //        randomY = rng.Next(mapHeight - 1);
-                //    }
-                //    return TileMap[randomY, randomX] = Enemy;
-                //case Tile.TileType.GOLD:
-                //    break;
-                //case Tile.TileType.WEAPON:
-                //    break;
-                //case Tile.TileType.EMPTYTILE:
-                //    break;
-                //case Tile.TileType.OBSTACLE:
-                //    break;
-                case Tile.TileType.SWAMPCREATURE:
-                    while (TileMap[randomY, randomX] != EmptyTile)
-                    {
-                        randomX = rng.Next(mapWidth - 1);
-                        randomY = rng.Next(mapHeight - 1);
-                    }
-                    return TileMap[randomY, randomX] = swampCreature;
-
+                Enemies[c].characterVision[0] = TileMap[Enemies[c].TileY, Enemies[c].TileX];
+                Enemies[c].characterVision[1] = TileMap[Enemies[c].TileY - 1,Enemies[c].TileX];
+                Enemies[c].characterVision[2] = TileMap[Enemies[c].TileY + 1,Enemies[c].TileX];
+                Enemies[c].characterVision[3] = TileMap[Enemies[c].TileY,Enemies[c].TileX - 1];
+                Enemies[c].characterVision[4] = TileMap[Enemies[c].TileY,Enemies[c].TileX + 1];
             }
-            return TileMap[randomY, randomX] = EmptyTile;
-
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GADE6122_POE_Part1
 {
-    internal class Swamp_Creature : Enemy
+    public class Swamp_Creature : Enemy
     {
         public Swamp_Creature(int swampX, int swampY, int enemyArr) : base(swampX, swampY, enemyArr)
         {
