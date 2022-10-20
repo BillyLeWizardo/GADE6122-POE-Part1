@@ -12,12 +12,12 @@ namespace GADE6122_POE_Part1
 
         //VARIABLES
         public Tile[,] TileMap { get; set; }
+        //public char[,] tileChar { get; set; }
         private Hero Hero { get; set; }
         private Enemy[] Enemies { get; set; }
         private Enemy Enemy { get; set; }
-
-        private EmptyTile EmptyTile { get; set; }
-        private Obstacle Obstacle { get; set; }
+        //private EmptyTile EmptyTile { get; set; }
+        //private Obstacle Obstacle { get; set; }
         private Swamp_Creature swampCreature { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
@@ -34,11 +34,14 @@ namespace GADE6122_POE_Part1
             {
                 for(int x = 0; x < mapWidth; x++)
                 {
-                    if (x == 0)
+                    if ((x == 0) || (x == mapWidth-1))
                     {
-                        TileMap[y, x] = Obstacle;
+                        TileMap[x,y] = new Obstacle(x,y);
                     }
-                    else{ TileMap[y, x] = EmptyTile; }
+                    else
+                    { 
+                        TileMap[y, x] = new EmptyTile(x,y); 
+                    }
                 }
             }
 

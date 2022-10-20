@@ -13,8 +13,11 @@ namespace GADE6122_POE_Part1
     public partial class frmARPG : Form
     {
         private Map gameMap { get; set; }
-        private EmptyTile EmptyTile { get; set; }
-        private Obstacle Obstacle { get; set; }
+
+        public char[,] charMap;
+
+        //private EmptyTile EmptyTile { get; set; }
+        //private Obstacle Obstacle { get; set; }
         public frmARPG()
         {
             InitializeComponent();
@@ -38,7 +41,6 @@ namespace GADE6122_POE_Part1
                 case Character.characterMovement.DOWN:
                     break;
                 case Character.characterMovement.LEFT:
-
                     break;
                 case Character.characterMovement.RIGHT:
                     break;
@@ -50,22 +52,18 @@ namespace GADE6122_POE_Part1
 
         private void refreshDisplay()
         {
-            char[,] tileChar = new char[gameMap.mapHeight, gameMap.mapWidth];
+            //charMap = new char[gameMap.mapHeight, gameMap.mapWidth];
 
-            for (int y = 0; y < gameMap.mapHeight; y++)
-            {
-                for (int x = 0; x < gameMap.mapWidth; x++)
-                {
-                    if (gameMap.TileMap[y,x] == EmptyTile)
-                    {
-                        tileChar[y, x] = '.';
-                    }
-                    if(gameMap.TileMap[y,x] == Obstacle)
-                    {
-                        tileChar[y, x] = 'X';
-                    }
-                }
-            }
+            //for (int y = 0; y < gameMap.mapHeight; y++)
+            //{
+            //    for (int x = 0; x < gameMap.mapWidth; x++)
+            //    {
+            //        if (gameMap.TileMap[y,x] == )
+            //        {
+
+            //        }
+            //    }
+            //}
 
             for (int y = 0; y < gameMap.mapHeight; y++)
             {
@@ -74,7 +72,7 @@ namespace GADE6122_POE_Part1
                     TextBox txtBox = new TextBox();
                     txtBox.Size = new Size(30, 30);
                     txtBox.Name = "txt" + x.ToString() + "_" + y.ToString();
-                    txtBox.Text = tileChar[y,x].ToString();
+                    txtBox.Text = charMap[y,x].ToString();
                     txtBox.Location = new Point(x * 30, y * 30);
                     pnlDisplay.Controls.Add(txtBox);
                 }
