@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace GADE6122_POE_Part1
 {
-    abstract internal class Enemy : Character
+    abstract public class Enemy : Character
     {
-        protected Random rng = new Random();
-
-        public Enemy(int enemyX, int enemyY, int enemyDamage, int enemyStartingHP, char enemySymbol) : base(enemyX,enemyY, enemySymbol)
-        {
-
+        protected Random rnJesus = new Random();
+        protected TileType enemyType { get; set; }
+        public int enemyArr { get; set; }
+        public Enemy(int enemyX, int enemyY, int enemyArr) : base(enemyX, enemyY)
+        {  
+            this.enemyArr = enemyArr;
         }
 
         public override string ToString()
         {
-            return "EnemyClassName at [X,Y] (Amount DMG)";
+            return $"{enemyType} | Enemy HP: {characterHP}/{characterMaxHP} | Enemy Damage: {characterDamage} | Location: [{tileX},{tileY}]";
         }
     }
 }

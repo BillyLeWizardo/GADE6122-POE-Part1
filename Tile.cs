@@ -20,11 +20,11 @@ namespace GADE6122_POE_Part1
             EMPTYTILE = '.',  
         }
 
-        public Tile(int x, int y)
+        public Tile(int tileX, int tileY)
         {
-            this.tileX = x;
-            this.tileY = y;
+            this.tileX = tileX;
+            this.tileY = tileY;
         }
-        public TileType Type { get; set; }
+        public TileType tileType { get; set; }
     }
 }

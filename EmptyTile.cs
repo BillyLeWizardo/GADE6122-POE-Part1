@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GADE6122_POE_Part1
 {
-    internal class EmptyTile : Tile
+    public class EmptyTile : Tile
     {
-        public EmptyTile(int x, int y) : base(x, y)
+        public EmptyTile(int emptyX, int emptyY) : base(emptyX, emptyY)
         {
-            Type = TileType.EMPTYTILE;
+            tileType = TileType.EMPTYTILE;
         }
     }
 }

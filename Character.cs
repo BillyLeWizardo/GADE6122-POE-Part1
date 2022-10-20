@@ -11,7 +11,7 @@ namespace GADE6122_POE_Part1
     {
         //VARIABLES
         protected int characterHP { get; set; }
-        protected int charcterMaxHP{ get; set; }
+        protected int characterMaxHP{ get; set; }
         protected int characterDamage{ get; set; }
         public Tile[] characterVision{ get; set; } = new Tile[5];
         public enum characterMovement
@@ -24,7 +24,7 @@ namespace GADE6122_POE_Part1
         }
 
         //METHODS
-        public Character(int characterX, int characterY, char symbol) : base(characterX, characterY, 'O')
+        public Character(int characterX, int characterY) : base(characterX,characterY)
         {
 
         }
