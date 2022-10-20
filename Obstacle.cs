@@ -8,9 +8,9 @@ namespace GADE6122_POE_Part1
 {
     internal class Obstacle : Tile
     {
-        public Obstacle(int obstacleX, int obstacleY) : base(obstacleX, obstacleY, 'X')
+        public Obstacle(int x, int y) : base(x, y)
         {
-
+            Type = TileType.OBSTACLE;
         }
     }
 }

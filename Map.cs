@@ -16,8 +16,8 @@ namespace GADE6122_POE_Part1
         private Hero Hero { get; set; }
         private Enemy[] Enemies { get; set; }
         private Enemy Enemy { get; set; }
-        //private EmptyTile EmptyTile { get; set; }
-        //private Obstacle Obstacle { get; set; }
+        private EmptyTile EmptyTile { get; set; }
+        private Obstacle Obstacle { get; set; }
         private Swamp_Creature swampCreature { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
