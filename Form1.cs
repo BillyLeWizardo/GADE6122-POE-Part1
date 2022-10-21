@@ -27,6 +27,7 @@ namespace GADE6122_POE_Part1
 
         private void refreshDisplay()
         {
+            RefreshBox(pnlDisplay);
             gameEngine.GameMap.mapGen();
             lblHeroStats.Text = gameEngine.GameMap.Hero.ToString();
 
@@ -49,6 +50,19 @@ namespace GADE6122_POE_Part1
             }
 
             lblAttackMessage.Text = "";
+        }
+
+        private void RefreshBox(Control ctrl)
+        {
+            foreach (Control x in ctrl.Controls)
+            {
+                if (x is TextBox)
+                {
+                    ((TextBox)x).Dispose();
+                    RefreshBox(this);
+                }
+
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)

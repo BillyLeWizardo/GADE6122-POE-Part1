@@ -13,7 +13,7 @@ namespace GADE6122_POE_Part1
 
         public GameEngine()
         {
-            gameMap = new Map(10, 15, 6, 10, 5);
+            gameMap = new Map(10, 15, 6, 10, 5, 5);
         }
 
         public void movePlayer(Character.characterMovement direction)

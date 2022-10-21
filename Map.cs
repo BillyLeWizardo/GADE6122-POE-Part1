@@ -124,6 +124,7 @@ namespace GADE6122_POE_Part1
                 if (tileType == Tile.TileType.GOLD)
             {
                 itemsAccessor[itemCounter] = new Gold(randomX, randomY);
+                TileMap[randomX, randomY] = itemsAccessor[itemCounter];
             }
             return TileMap[randomX, randomY];
 
