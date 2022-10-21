@@ -20,6 +20,7 @@ namespace GADE6122_POE_Part1
         {
             HERO = 'H',
             SWAMP_CREATURE = 'C',
+            MAGE = 'M',
             GOLD = 'G',
             WEAPON = '|',
             OBSTACLE = 'X',

@@ -18,6 +18,9 @@ namespace GADE6122_POE_Part1
         private Enemy[] enemies;
         public Enemy[] Enemies { get { return enemies; } set { enemies = value; } }
 
+        private Item[] items;
+        public Item[] itemsAccessor { get { return items; } set { items = value; } }
+
 
         private Random rnjesus = new Random();
         public int mapWidth;
@@ -60,7 +63,18 @@ namespace GADE6122_POE_Part1
 
             for (enemyCounter = 0; enemyCounter < totalEnemies; enemyCounter++)
             {
-                Create(Tile.TileType.SWAMP_CREATURE);
+                int randomEnemy = rnjesus.Next(2);
+                switch (randomEnemy)
+                {
+                    case 0:
+                        Create(Tile.TileType.SWAMP_CREATURE);
+                        break;
+                    case 1:
+                        Create(Tile.TileType.MAGE);
+                        break;
+                    default:
+                        break;
+                }
             }
 
             Create(Tile.TileType.HERO);
@@ -82,6 +96,12 @@ namespace GADE6122_POE_Part1
             if (tileType == Tile.TileType.SWAMP_CREATURE)
             {
                 Enemies[enemyCounter] = new Swamp_Creature(randomX, randomY, enemyCounter);
+                TileMap[randomX, randomY] = Enemies[enemyCounter];
+            }
+            else 
+            if (tileType == Tile.TileType.MAGE)
+            {
+                Enemies[enemyCounter] = new Mage(randomX, randomY, enemyCounter);
                 TileMap[randomX, randomY] = Enemies[enemyCounter];
             }
             else
