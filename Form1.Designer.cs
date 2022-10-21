@@ -32,6 +32,7 @@
             this.pnlDisplay = new System.Windows.Forms.Panel();
             this.lblHeroStats = new System.Windows.Forms.Label();
             this.pnlStats = new System.Windows.Forms.Panel();
+            this.lblAttackMessage = new System.Windows.Forms.Label();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
@@ -39,9 +40,8 @@
             this.btnNoMove = new System.Windows.Forms.Button();
             this.pnlControls = new System.Windows.Forms.Panel();
             this.pnlText = new System.Windows.Forms.Panel();
-            this.lstEnemies = new System.Windows.Forms.ListBox();
             this.btnAttack = new System.Windows.Forms.Button();
-            this.lblAttackMessage = new System.Windows.Forms.Label();
+            this.lstEnemies = new System.Windows.Forms.ListBox();
             this.pnlStats.SuspendLayout();
             this.pnlControls.SuspendLayout();
             this.pnlText.SuspendLayout();
@@ -82,6 +82,16 @@
             this.pnlStats.Name = "pnlStats";
             this.pnlStats.Size = new System.Drawing.Size(673, 461);
             this.pnlStats.TabIndex = 0;
+            // 
+            // lblAttackMessage
+            // 
+            this.lblAttackMessage.AutoSize = true;
+            this.lblAttackMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.75F);
+            this.lblAttackMessage.Location = new System.Drawing.Point(4, 271);
+            this.lblAttackMessage.Name = "lblAttackMessage";
+            this.lblAttackMessage.Size = new System.Drawing.Size(328, 32);
+            this.lblAttackMessage.TabIndex = 1;
+            this.lblAttackMessage.Text = "Attack Message Go Here";
             // 
             // btnLeft
             // 
@@ -165,15 +175,6 @@
             this.pnlText.Size = new System.Drawing.Size(673, 211);
             this.pnlText.TabIndex = 2;
             // 
-            // lstEnemies
-            // 
-            this.lstEnemies.FormattingEnabled = true;
-            this.lstEnemies.ItemHeight = 16;
-            this.lstEnemies.Location = new System.Drawing.Point(144, 4);
-            this.lstEnemies.Name = "lstEnemies";
-            this.lstEnemies.Size = new System.Drawing.Size(526, 196);
-            this.lstEnemies.TabIndex = 0;
-            // 
             // btnAttack
             // 
             this.btnAttack.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
@@ -185,15 +186,14 @@
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
             // 
-            // lblAttackMessage
+            // lstEnemies
             // 
-            this.lblAttackMessage.AutoSize = true;
-            this.lblAttackMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.75F);
-            this.lblAttackMessage.Location = new System.Drawing.Point(4, 400);
-            this.lblAttackMessage.Name = "lblAttackMessage";
-            this.lblAttackMessage.Size = new System.Drawing.Size(328, 32);
-            this.lblAttackMessage.TabIndex = 1;
-            this.lblAttackMessage.Text = "Attack Message Go Here";
+            this.lstEnemies.FormattingEnabled = true;
+            this.lstEnemies.ItemHeight = 16;
+            this.lstEnemies.Location = new System.Drawing.Point(144, 4);
+            this.lstEnemies.Name = "lstEnemies";
+            this.lstEnemies.Size = new System.Drawing.Size(526, 196);
+            this.lstEnemies.TabIndex = 0;
             // 
             // frmARPG
             // 

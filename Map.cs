@@ -35,8 +35,8 @@ namespace GADE6122_POE_Part1
 
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies, int amountOfGoldDrops)
         {
-            mapHeight = rnjesus.Next(minMapHeight, maxMapHeight);
-            mapWidth= rnjesus.Next(minMapWidth, maxMapWidth);
+            mapHeight = rnjesus.Next(minMapHeight, maxMapHeight+1);
+            mapWidth= rnjesus.Next(minMapWidth, maxMapWidth+1);
 
             TileMap = new Tile[mapWidth, mapHeight];
             
@@ -132,18 +132,18 @@ namespace GADE6122_POE_Part1
 
         public void UpdateVision()
         {
-            Hero.characterVision[0] = TileMap[Hero.TileX, Hero.TileY];
-            Hero.characterVision[1] = TileMap[Hero.TileX - 1, Hero.TileY];
-            Hero.characterVision[2] = TileMap[Hero.TileX + 1, Hero.TileY];
-            Hero.characterVision[3] = TileMap[Hero.TileX, Hero.TileY - 1];
-            Hero.characterVision[4] = TileMap[Hero.TileX, Hero.TileY + 1];
+            Hero.characterVision[0] = TileMap[Hero.TileX, Hero.TileY - 1];
+            Hero.characterVision[1] = TileMap[Hero.TileX, Hero.TileY + 1];
+            Hero.characterVision[2] = TileMap[Hero.TileX - 1, Hero.TileY];
+            Hero.characterVision[3] = TileMap[Hero.TileX + 1, Hero.TileY];
+            Hero.characterVision[4] = TileMap[Hero.TileX, Hero.TileY];
 
             for (int c = 0; c < totalEnemies; c++)
             {
-                Enemies[c].characterVision[0] = TileMap[Enemies[c].TileX - 1,Enemies[c].TileY];
-                Enemies[c].characterVision[1] = TileMap[Enemies[c].TileX + 1,Enemies[c].TileY];
-                Enemies[c].characterVision[2] = TileMap[Enemies[c].TileX,Enemies[c].TileY - 1];
-                Enemies[c].characterVision[3] = TileMap[Enemies[c].TileX,Enemies[c].TileY + 1];
+                Enemies[c].characterVision[0] = TileMap[Enemies[c].TileX,Enemies[c].TileY - 1];
+                Enemies[c].characterVision[1] = TileMap[Enemies[c].TileX,Enemies[c].TileY + 1];
+                Enemies[c].characterVision[2] = TileMap[Enemies[c].TileX - 1, Enemies[c].TileY];
+                Enemies[c].characterVision[3] = TileMap[Enemies[c].TileX + 1, Enemies[c].TileY];
             }
         }
 
@@ -166,8 +166,8 @@ namespace GADE6122_POE_Part1
             {
                 if (item.TileX == x && item.TileX == y)
                 {
+                    itemsAccessor[counter] = null;
                     return item;
-                    items[counter] = null;
                 }
                 counter++;
             }

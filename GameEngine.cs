@@ -22,6 +22,12 @@ namespace GADE6122_POE_Part1
 
             gameMap.Hero.Move(gameMap.Hero.ReturnMove(direction));
 
+            //if (Map.TileMap[gameMap.Hero.TileY,gameMap.Hero.TileX].tileType == Tile.TileType.GOLD)
+            //{
+            //    gameMap.GetItemAtPosition(gameMap.Hero.TileX, gameMap.Hero.TileY);
+            //    gameMap.Hero.Pickup();
+            //}
+
             Map.TileMap[gameMap.Hero.TileY, gameMap.Hero.TileX] = gameMap.Hero;
 
             gameMap.UpdateVision();
@@ -73,5 +79,7 @@ namespace GADE6122_POE_Part1
             }
             checkIfDead(gameMap.Hero);
         }
+
+
     }
 }

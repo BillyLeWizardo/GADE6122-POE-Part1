@@ -20,6 +20,7 @@ namespace GADE6122_POE_Part1
         public Gold(int goldX, int goldY) : base(goldX, goldY)
         {
             goldDropAmount = goldRng.Next(1, 6);
+            itemType = ItemType.GOLD;
             tileType = TileType.GOLD;
         }
 

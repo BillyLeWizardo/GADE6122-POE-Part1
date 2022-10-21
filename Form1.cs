@@ -23,21 +23,26 @@ namespace GADE6122_POE_Part1
             gameEngine = new GameEngine();
             
             refreshDisplay();
+
+            lblAttackMessage.Text = $"TileMap:{gameEngine.GameMap.mapWidth}/{gameEngine.GameMap.mapHeight}\n";
+
         }
 
         private void refreshDisplay()
         {
-            RefreshBox(pnlDisplay);
             gameEngine.GameMap.mapGen();
             lblHeroStats.Text = gameEngine.GameMap.Hero.ToString();
+            
 
-            for (int x = 0; x < gameEngine.GameMap.mapHeight; x++)
+            RefreshBox(pnlDisplay);
+            for (int x = 0; x < gameEngine.GameMap.mapWidth; x++)
             {
-                for (int y = 0; y < gameEngine.GameMap.mapWidth; y++)
+                for (int y = 0; y < gameEngine.GameMap.mapHeight; y++)
                 {
                     TextBox textBox = new TextBox();
+                    textBox.Name = $"{x}_{y}";
                     textBox.Location = new Point(x * 30, y * 30);
-                    textBox.Text = gameEngine.GameMap.charMap[y,x].ToString();
+                    textBox.Text = gameEngine.GameMap.charMap[x, y].ToString();
                     textBox.Size = new Size(25, 25);
                     pnlDisplay.Controls.Add(textBox);
                 }

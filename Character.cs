@@ -26,8 +26,6 @@ namespace GADE6122_POE_Part1
 
         Gold heroGold { get; set; }
 
-        Map charMap { get; set; }
-
         //METHODS
         public Character(int characterX, int characterY) : base(characterX,characterY)
         {
@@ -40,7 +38,7 @@ namespace GADE6122_POE_Part1
 
         public void Pickup(Item item)
         {
-            if (item == heroGold)
+            if (item.tileType == TileType.GOLD)
             {
                 characterGoldPurse += heroGold.goldDropAmountAccessor;
             }
