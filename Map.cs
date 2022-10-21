@@ -27,11 +27,12 @@ namespace GADE6122_POE_Part1
         public int mapHeight;
 
         public int totalEnemies { get; set; }
+        public int totalItems { get; set; }
         private int enemyCounter;
         public static Tile[,] TileMap { get; set; }
         public char[,] charMap;
 
-        public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies)
+        public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies, int amountOfGoldDrops)
         {
             mapHeight = rnjesus.Next(minMapHeight, maxMapHeight);
             mapWidth= rnjesus.Next(minMapWidth, maxMapWidth);
@@ -59,7 +60,7 @@ namespace GADE6122_POE_Part1
             }
 
             totalEnemies = numOfEnemies;
-            Enemies = new Enemy[totalEnemies];
+            Enemies = new Enemy[totalEnemies]; //Init the Enemy array size
 
             for (enemyCounter = 0; enemyCounter < totalEnemies; enemyCounter++)
             {
@@ -76,6 +77,10 @@ namespace GADE6122_POE_Part1
                         break;
                 }
             }
+
+            totalItems = amountOfGoldDrops;
+            items = new Item[amountOfGoldDrops]; //Initializes items Arr. Only gold exists as items as of now.
+            Create(Tile.TileType.GOLD);
 
             Create(Tile.TileType.HERO);
             
@@ -109,6 +114,11 @@ namespace GADE6122_POE_Part1
             {
                 Hero = new Hero(randomY, randomX, 20);
                 TileMap[randomX, randomY] = Hero;
+            }
+            else
+                if (tileType == Tile.TileType.GOLD)
+            {
+                itemsAccessor[totalItems] = new Gold(randomX, randomY);
             }
             return TileMap[randomX, randomY];
 
