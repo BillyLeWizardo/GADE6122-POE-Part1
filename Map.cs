@@ -27,8 +27,9 @@ namespace GADE6122_POE_Part1
         public int mapHeight;
 
         public int totalEnemies { get; set; }
-        public int totalItems { get; set; }
         private int enemyCounter;
+        public int totalItems { get; set; }
+        public int itemCounter;
         public static Tile[,] TileMap { get; set; }
         public char[,] charMap;
 
@@ -80,7 +81,11 @@ namespace GADE6122_POE_Part1
 
             totalItems = amountOfGoldDrops;
             items = new Item[amountOfGoldDrops]; //Initializes items Arr. Only gold exists as items as of now.
-            Create(Tile.TileType.GOLD);
+
+            for (itemCounter = 0; itemCounter < totalItems; itemCounter++)
+            {
+                Create(Tile.TileType.GOLD);
+            }
 
             Create(Tile.TileType.HERO);
             
@@ -118,7 +123,7 @@ namespace GADE6122_POE_Part1
             else
                 if (tileType == Tile.TileType.GOLD)
             {
-                itemsAccessor[totalItems] = new Gold(randomX, randomY);
+                itemsAccessor[itemCounter] = new Gold(randomX, randomY);
             }
             return TileMap[randomX, randomY];
 
@@ -151,6 +156,21 @@ namespace GADE6122_POE_Part1
                     charMap[x, y] = (char)TileMap[x, y].tileType;
                 }
             }
+        }
+
+        public Item GetItemAtPosition(int x, int y)
+        {
+            int counter = 0;
+            foreach (Item item in items)
+            {
+                if (item.TileX == x && item.TileX == y)
+                {
+                    return item;
+                    items[counter] = null;
+                }
+                counter++;
+            }
+            return null;
         }
     }
 }

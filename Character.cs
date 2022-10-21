@@ -13,6 +13,7 @@ namespace GADE6122_POE_Part1
         protected int characterHP { get; set; }
         protected int characterMaxHP{ get; set; }
         protected int characterDamage{ get; set; }
+        protected int characterGoldPurse { get; set; }
         public Tile[] characterVision{ get; set; } = new Tile[5];
         public enum characterMovement
         {
@@ -22,6 +23,10 @@ namespace GADE6122_POE_Part1
             LEFT,
             RIGHT
         }
+
+        Gold heroGold { get; set; }
+
+        Map charMap { get; set; }
 
         //METHODS
         public Character(int characterX, int characterY) : base(characterX,characterY)
@@ -33,6 +38,13 @@ namespace GADE6122_POE_Part1
             target.characterHP -= characterDamage;
         }
 
+        public void Pickup(Item item)
+        {
+            if (item == heroGold)
+            {
+                characterGoldPurse += heroGold.goldDropAmountAccessor;
+            }
+        }
         public bool IsDead()
         {
             if (characterHP < 1)

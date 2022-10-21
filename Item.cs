@@ -13,6 +13,13 @@ namespace GADE6122_POE_Part1
 
         }
 
+        public enum ItemType
+        {
+            GOLD
+        }
+
+        public ItemType itemType;
+
         public abstract override string ToString();
     }
 }
