@@ -26,13 +26,14 @@ namespace GADE6122_POE_Part1
         public int totalEnemies { get; set; }
         private int enemyCounter;
         public static Tile[,] TileMap { get; set; }
+        public char[,] charMap;
 
         public Map(int minMapWidth, int maxMapWidth, int minMapHeight, int maxMapHeight, int numOfEnemies)
         {
             mapHeight = rnjesus.Next(minMapHeight, maxMapHeight);
             mapWidth= rnjesus.Next(minMapWidth, maxMapWidth);
 
-            TileMap = new Tile[mapHeight, mapWidth];
+            TileMap = new Tile[mapWidth, mapHeight];
             
             for (int x = 0; x < TileMap.GetLength(0); x++)
             {
@@ -42,7 +43,8 @@ namespace GADE6122_POE_Part1
                     {
                         TileMap[x, y] = new Obstacle(x, y);
                     }
-                    else if (y == 0 || y == mapHeight - 1)
+                    else 
+                    if (y == 0 || y == mapHeight - 1)
                     {
                         TileMap[x, y] = new Obstacle(x, y);
                     }
@@ -76,37 +78,48 @@ namespace GADE6122_POE_Part1
                 randomX = rnjesus.Next(mapWidth - 1);
                 randomY = rnjesus.Next(mapHeight - 1);
             }
-            while (TileMap[randomY, randomX].tileType != Tile.TileType.EMPTYTILE);
+            while (TileMap[randomX, randomY].tileType != Tile.TileType.EMPTYTILE);
             if (tileType == Tile.TileType.SWAMP_CREATURE)
             {
                 Enemies[enemyCounter] = new Swamp_Creature(randomX, randomY, enemyCounter);
-                TileMap[randomY, randomX] = Enemies[enemyCounter];
+                TileMap[randomX, randomY] = Enemies[enemyCounter];
             }
             else
             if (tileType == Tile.TileType.HERO)
             {
                 Hero = new Hero(randomY, randomX, 20);
-                TileMap[randomY, randomX] = Hero;
+                TileMap[randomX, randomY] = Hero;
             }
-            return TileMap[randomY, randomX];
+            return TileMap[randomX, randomY];
 
         }
 
         public void UpdateVision()
         {
-            Hero.characterVision[0] = TileMap[Hero.TileY, Hero.TileX];
-            Hero.characterVision[1] = TileMap[Hero.TileY - 1, Hero.TileX];
-            Hero.characterVision[2] = TileMap[Hero.TileY + 1, Hero.TileX];
-            Hero.characterVision[3] = TileMap[Hero.TileY, Hero.TileX - 1];
-            Hero.characterVision[4] = TileMap[Hero.TileY, Hero.TileX + 1];
+            Hero.characterVision[0] = TileMap[Hero.TileX, Hero.TileY];
+            Hero.characterVision[1] = TileMap[Hero.TileX - 1, Hero.TileY];
+            Hero.characterVision[2] = TileMap[Hero.TileX + 1, Hero.TileY];
+            Hero.characterVision[3] = TileMap[Hero.TileX, Hero.TileY - 1];
+            Hero.characterVision[4] = TileMap[Hero.TileX, Hero.TileY + 1];
 
             for (int c = 0; c < totalEnemies; c++)
             {
-                Enemies[c].characterVision[0] = TileMap[Enemies[c].TileY, Enemies[c].TileX];
-                Enemies[c].characterVision[1] = TileMap[Enemies[c].TileY - 1,Enemies[c].TileX];
-                Enemies[c].characterVision[2] = TileMap[Enemies[c].TileY + 1,Enemies[c].TileX];
-                Enemies[c].characterVision[3] = TileMap[Enemies[c].TileY,Enemies[c].TileX - 1];
-                Enemies[c].characterVision[4] = TileMap[Enemies[c].TileY,Enemies[c].TileX + 1];
+                Enemies[c].characterVision[0] = TileMap[Enemies[c].TileX - 1,Enemies[c].TileY];
+                Enemies[c].characterVision[1] = TileMap[Enemies[c].TileX + 1,Enemies[c].TileY];
+                Enemies[c].characterVision[2] = TileMap[Enemies[c].TileX,Enemies[c].TileY - 1];
+                Enemies[c].characterVision[3] = TileMap[Enemies[c].TileX,Enemies[c].TileY + 1];
+            }
+        }
+
+        public void mapGen()
+        {
+            charMap = new char[mapWidth, mapHeight];
+            for (int x = 0; x < TileMap.GetLength(0); x++)
+            {
+                for (int y = 0; y < TileMap.GetLength(1); y++)
+                {
+                    charMap[x, y] = (char)TileMap[x, y].tileType;
+                }
             }
         }
     }
